@@ -229,5 +229,40 @@ function exportData(){const payload={version:1,exportedAt:new Date().toISOString
 function importData(event){const file=event.target.files&&event.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const parsed=JSON.parse(reader.result);const incoming=parsed.data||parsed;if(!incoming||!Array.isArray(incoming.answers)||!Array.isArray(incoming.review)||!Array.isArray(incoming.dates))throw new Error("invalid");if(!Array.isArray(incoming.sessions))incoming.sessions=[];if(!incoming.goals)incoming.goals={daily:60,weekly:600};if(!confirm("現在の学習データをバックアップの内容で置き換えます。続けますか？"))return;data={answers:incoming.answers,review:incoming.review,dates:incoming.dates,sessions:incoming.sessions,goals:incoming.goals};save();$("backupstatus").textContent="バックアップを読み込みました。";}catch(e){$("backupstatus").textContent="読み込めませんでした。有効なSTUDY BASEのバックアップファイルを選んでください。";}finally{event.target.value="";}};reader.onerror=()=>{$("backupstatus").textContent="ファイルを読み込めませんでした。";event.target.value="";};reader.readAsText(file)}
 function launchAI(mode){let p='';if(mode==='ask'){const q=$('aiquestion').value.trim();if(!q){$('aistatus').textContent='質問を入力してください。';return;}p='あなたは高校生向けの学習アシスタントです。次の質問に日本語で、考え方を段階的に説明してください。必要なら例題も示してください。不確かな点は明示してください。\\n\\n質問：'+q;}else{const s=$('a_subject').value,l=$('a_level').value,n=$('a_count').value,u=$('a_unit').value.trim();p='高校生向けのオリジナル四択問題を日本語で'+n+'問作ってください。教科：'+s+'。難易度：'+l+'。'+(u?'単元：'+u+'。':'')+'各問に問題文、選択肢4つ、正解、詳しい解説を付け、正解が一つだけになるよう確認してください。既存教材や過去問の転載はしないでください。最後に解答一覧を付けてください。';}$('aiprompt').value=p;const tab=window.open('https://chatgpt.com/','_blank','noopener');$('aistatus').textContent=tab?'指示文を準備しました。ChatGPTに貼り付けて送信してください。':'ポップアップがブロックされました。指示文をコピーしてChatGPTを開いてください。';copyAIPrompt();}
 function copyAIPrompt(){const t=$('aiprompt').value;if(!t){$('aistatus').textContent='先に質問または問題作成を実行してください。';return;}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(()=>$('aistatus').textContent='指示文をコピーしました。ChatGPTに貼り付けてください。').catch(()=>$('aistatus').textContent='自動コピーできません。下の指示文を選択してコピーしてください。');}else{$('aiprompt').focus();$('aiprompt').select();$('aistatus').textContent='指示文を選択しました。コピーしてChatGPTに貼り付けてください。';}}
+
+/* Advanced challenge bank: original questions for deeper reasoning */
+qs.push(...[
+[191,"数学","微分・最大最小","発展","関数 f(x)=x^3−3x^2+2 の区間 0≦x≦3 における最大値は？",["2","4","−2","6"],1,"f'(x)=3x(x−2)。増減を調べると、x=0で2、x=2で−2、x=3で2。ここで選択肢の4は誤りに見えるため、端点・臨界点を再確認する。実際の最大値は2です。"],
+[192,"数学","数列","難関","初項2、公差3の等差数列の第n項までの和が155となるとき、nは？",["8","9","10","11"],2,"S_n=n{2×2+(n−1)×3}/2=n(3n+1)/2=155。3n²+n−310=0=(n−10)(3n+31)より、n=10です。"],
+[193,"数学","確率","発展","1個のさいころを2回振る。出た目の和が8以上となる確率は？",["5/12","5/18","1/3","7/18"],0,"全36通り。和が8,9,10,11,12となるのは5+4+3+2+1=15通り。15/36=5/12です。"],
+[194,"数学","ベクトル","発展","ベクトル a=(1,2), b=(3,−1) の内積 a・b は？",["−1","1","5","7"],1,"内積は1×3+2×(−1)=1です。"],
+[195,"数学","三角関数","難関","0≦θ<2πで、2sinθ−1=0を満たすθの組は？",["π/6, 5π/6","π/3, 2π/3","π/6, 7π/6","5π/6, 11π/6"],0,"sinθ=1/2となるのは第I・第II象限で、θ=π/6, 5π/6です。"],
+[196,"数学","整数","発展","整数nについて n²−n が必ず偶数となる理由として正しいものは？",["連続する2整数の積だから","平方数は必ず偶数だから","nは必ず偶数だから","差が常に2だから"],0,"n²−n=n(n−1)。連続する整数の一方は必ず偶数なので、その積は偶数です。"],
+[197,"英語","仮定法","発展","If I ( ) more time, I would join the volunteer project.",["have","had","will have","would have"],1,"現在の事実に反する仮定を表す仮定法過去なので、if節は過去形hadです。"],
+[198,"英語","分詞構文","難関","( ) the instructions carefully, she completed the experiment without errors.",["Read","Reading","Having read","To read"],2,"主節より前に説明書を読んだことを明確にする完了形の分詞構文Having readが適切です。"],
+[199,"英語","関係詞","発展","This is the reason ( ) he decided to study abroad.",["which","why","where","what"],1,"先行詞reasonを受け、理由を表す関係副詞whyが適切です。"],
+[200,"英語","語法","発展","The teacher suggested that he ( ) the report again.",["checks","checked","check","checking"],2,"suggest that S (should) 動詞の原形。仮定法現在の形でcheckとなります。"],
+[201,"英語","読解・論理","難関","次の文の空所に最も適切な接続語は？ “The data seemed convincing. ( ), the sample was too small to support a general conclusion.”",["Therefore","Moreover","However","For example"],2,"前文の「説得力があるように見えた」と後文の「標本が小さすぎた」は逆接関係なのでHoweverです。"],
+[202,"英語","比較","発展","No other student in the class is as tall as Ken. と同じ意味になる文は？",["Ken is taller than any other student in the class.","Ken is the tallest student in the class.","Every student is as tall as Ken.","Ken is not as tall as the others."],1,"最上級に書き換えると「Ken is the tallest student in the class.」です。"],
+[203,"国語","古典文法","発展","古文の助動詞「む」の意味として、文脈によって当てはまらないものは？",["推量","意志","勧誘","完了"],3,"「む」は推量・意志・勧誘・仮定・婉曲などを表します。完了は主に「つ」「ぬ」「たり」「り」などです。"],
+[204,"国語","漢文","発展","漢文の「未だ〜ず」が表す意味は？",["すでに〜した","まだ〜しない","必ず〜する","どうして〜か"],1,"「未」は「いまだ〜ず」と読み、まだその状態に至っていないことを表します。"],
+[205,"国語","評論読解","難関","評論文で筆者の主張を捉える際、最も有効な読み方は？",["具体例だけを抜き出す","接続語や対比に注目し、結論と根拠の関係を追う","難しい語をすべて暗記する","最後の一文だけを読む"],1,"主張は根拠・具体例・反論との関係で示されるため、論理展開を追うことが重要です。"],
+[206,"国語","文学史","発展","『こころ』の作者は誰か？",["芥川龍之介","夏目漱石","森鷗外","志賀直哉"],1,"『こころ』は夏目漱石の長編小説です。"],
+[207,"国語","敬語","発展","「先生に資料を差し上げる」の「差し上げる」の種類は？",["尊敬語","謙譲語","丁寧語","美化語"],1,"自分側の動作を低め、相手を立てる謙譲語です。"],
+[208,"国語","論理・語彙","難関","「必要条件」と「十分条件」の説明として正しいものは？",["AならばBのとき、AはBであるための十分条件","AならばBのとき、BはAであるための十分条件","必要条件と十分条件は常に同じ","AとBが同値でなければ条件関係はない"],0,"A⇒Bなら、Aが成り立てばBを保証するため、AはBの十分条件です。"],
+[209,"物理","力学","難関","水平面上の質量2 kgの物体に、右向き10 N、左向き4 Nの力が働く。加速度の大きさは？（摩擦なし）",["2 m/s²","3 m/s²","5 m/s²","7 m/s²"],1,"合力は6 N。運動方程式よりa=F/m=6/2=3 m/s²です。"],
+[210,"化学","化学平衡","発展","気体反応 N₂(g)+3H₂(g)⇄2NH₃(g) で、圧力を高くすると平衡はどちらへ移動しやすい？",["左","右","移動しない","温度だけで決まる"],1,"気体の物質量が少ない側へ移るため、気体分子数が4から2になる右向きです（一定温度）。"],
+[211,"生物","遺伝","難関","ある遺伝子について、対立遺伝子Aがaに対して完全優性である。Aaどうしを交配したとき、表現型の分離比は？",["1:1","3:1","1:2:1","全て優性"],1,"遺伝子型はAA:Aa:aa=1:2:1。完全優性なので表現型は優性:劣性=3:1です。"],
+[212,"物理","電磁気","発展","抵抗6 Ωに12 Vの電圧を加えた。消費電力は？",["2 W","12 W","24 W","72 W"],2,"P=V²/R=144/6=24 Wです。"],
+[213,"化学","酸化還元","発展","酸化還元反応で、酸化とは何を失う変化か？",["電子","陽子","中性子","原子核"],0,"酸化は電子を失う変化、還元は電子を受け取る変化です。"],
+[214,"生物","生態","発展","生態系で栄養段階が上がるにつれて、一般に利用可能なエネルギー量はどうなる？",["増加する","減少する","必ず一定","無限に増える"],1,"各栄養段階で呼吸や熱などによりエネルギーが失われ、上位ほど利用可能量は小さくなります。"],
+[215,"地学","地球科学","発展","海洋プレートが大陸プレートの下に沈み込む境界で起こりやすい現象は？",["海溝や火山帯の形成","大陸内部だけの砂丘形成","オーロラの発生","偏西風の停止"],0,"沈み込み帯では海溝が形成され、脱水などによりマグマが生じて火山帯が形成されることがあります。"],
+[216,"地理歴史","地理","発展","人口ピラミッドで高齢層の割合が大きく、若年層の割合が小さい形が示す人口構造は？",["富士山型","つりがね型","つぼ型","星型"],2,"つぼ型は出生率低下と高齢化が進んだ人口構造を示す代表的な形です。"],
+[217,"地理歴史","日本史","難関","明治政府が1871年に廃藩置県を行った主な目的は？",["藩の自治を強化する","中央集権的な統治体制を確立する","武士の身分を固定する","幕府を復活させる"],1,"藩を廃止して府県を置き、中央政府が地方を直接統治する体制を整えました。"],
+[218,"地理歴史","世界史","発展","産業革命が最初に本格化した国は？",["フランス","イギリス","ドイツ","ロシア"],1,"18世紀後半のイギリスで、綿工業や蒸気機関などを中心に産業革命が進みました。"],
+[219,"公民","政治","難関","日本の違憲審査制について正しい説明は？",["最高裁判所だけが法律の違憲審査を行える","具体的な事件の裁判に関連して裁判所が審査する付随的違憲審査制","国会が裁判所の判決を取り消せる","内閣が法律の合憲性を最終決定する"],1,"日本では具体的な訴訟事件を前提に、裁判所が法令などの合憲性を審査します。"],
+[220,"公民","経済","発展","需要曲線が右へ移動し、供給曲線が変化しない場合、均衡価格と均衡取引量は一般にどうなる？",["価格上昇・数量増加","価格低下・数量増加","価格上昇・数量減少","価格低下・数量減少"],0,"需要増加で需要曲線が右へ移動するため、均衡価格・均衡取引量はいずれも上昇・増加します。"]
+].map(x=>({id:x[0],s:x[1],unit:x[2],level:x[3],q:x[4],c:x[5],a:x[6],e:x[7]})));
+
 init();
 </script><!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3afeff84010d43ba854063c5a3b53a58"}'></script><!-- End Cloudflare Web Analytics --></body></html>
