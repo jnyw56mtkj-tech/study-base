@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jnyw56mtkj-tech.github.io/study-base/sitemap.xml
