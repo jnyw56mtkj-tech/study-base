@@ -100,12 +100,48 @@ body{background:radial-gradient(ellipse at 86% 0%,#174b7d 0,transparent 34%),rad
   "description": "主要5教科の問題演習、入試・模試対策、模擬テスト、学習時間の記録・成績分析を提供する無料の総合学習サイト。"
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "STUVOY",
+  "alternateName": "ステューヴォイ",
+  "url": "https://jnyw56mtkj-tech.github.io/study-base/",
+  "description": "高校生向けの無料総合学習プラットフォーム。国語、地理歴史、公民、数学、英語、理科、情報の問題演習、入試・模試対策、模擬テスト、学習記録に対応。",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "ja",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  }
+}
+</script>
 </head><body><div class="shell"><header class="top"><div class="brand"><div class="mark">S</div><div>STUVOY<small>THE WORLD’S LEARNING BASE.</small></div></div><span class="pill">世界の学びが、ここに集まる。</span></header>
 <div class="layout"><aside class="side"><button class="nav active" data-view="home">⌂　ホーム</button><button class="nav" data-view="practice">▤　問題演習</button><button class="nav" data-view="admissions">▣　入試・模試対策</button><button class="nav" data-view="exam">◫　模擬テスト</button><button class="nav" data-view="analysis">▥　成績分析</button><button class="nav" data-view="history">◷　学習履歴</button><button class="nav" data-view="time">⏱　学習時間</button><button class="nav" data-view="ai">✦　AI学習サポート</button><div class="sidebox">毎日少しずつ。<div class="bar" style="margin:10px 0"><i id="dailybar" style="width:0%"></i></div><span id="dailytext">今日の回答 0問</span></div></aside>
 <main><section class="view active" id="home"><div class="brand-hero"><div class="brand-hero-copy"><div class="brand-kicker"><span></span> LEARN WITHOUT BORDERS</div><div class="brand-word">STUVOY</div><div class="brand-subtitle">THE WORLD’S LEARNING BASE.</div><h2>世界の学びが、<br>ここに集まる。</h2><p>国境を越えて、知識がつながる。<br>学びが広がる。あなたの未来が動き出す。</p><div class="brand-tags"><span>GLOBAL COMMUNITY</span><span>AI-POWERED LEARNING</span><span>YOUR NEXT VOYAGE</span></div></div><div class="brand-orbit" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><div class="globe"><div class="globe-grid"></div><div class="globe-glow"></div></div><i class="node node-a"></i><i class="node node-b"></i><i class="node node-c"></i><i class="node node-d"></i></div><div class="brand-hero-foot"><span>01 / YOUR LEARNING JOURNEY</span><span>EXPLORE · CONNECT · GROW</span></div></div><div class="hero"><div><div class="eyebrow">YOUR LEARNING SPACE</div><h1>今日も一歩、<br>前へ進もう。</h1><p>学びたいときに、学びたい科目を。自分のペースで実力アップ。</p><p class="muted" style="margin-top:10px">ゲストモードで利用中：登録・ログインなしですべての学習機能を使えます。学習履歴はこの端末のブラウザに保存されます。</p></div><select id="grade"><option>高校1年生</option><option selected>高校2年生</option><option>高校3年生</option></select></div>
 <div class="stats"><div class="stat"><small>累計回答数</small><strong id="total">0問</strong></div><div class="stat"><small>正答率</small><strong id="accuracy">—%</strong></div><div class="stat"><small>学習日数</small><strong id="days">0日</strong></div><div class="stat"><small>復習リスト</small><strong id="reviews">0問</strong></div><div class="stat"><small>累計学習時間</small><strong id="studyTotal">0分</strong></div></div>
 <div class="sectionhead"><h2>教科から学ぶ</h2><span class="muted">全教科対応・随時拡充</span></div><div class="subjects" id="subjectgrid"></div>
-<div class="lower"><div class="card"><h3>今日のおすすめ</h3><p class="muted">まずは気になる問題から始めよう。</p><div class="quick"><div>⚡</div><div><b>今日の5問チャレンジ</b><small>教科横断のミックス問題</small></div><button class="btn" onclick="startMix()">挑戦する</button></div><div class="quick"><div>↻</div><div><b>間違えた問題を復習</b><small>苦手をそのままにしない</small></div><button class="btn secondary" onclick="startReview()">復習する</button></div></div><div class="card"><h3>学習のヒント</h3><p class="muted">正解できなかった問題は、解説を読んでからもう一度挑戦。少しずつ理解を積み重ねよう。</p></div></div></section>
+<div class="lower"><div class="card"><h3>今日のおすすめ</h3><p class="muted">まずは気になる問題から始めよう。</p><div class="quick"><div>⚡</div><div><b>今日の5問チャレンジ</b><small>教科横断のミックス問題</small></div><button class="btn" onclick="startMix()">挑戦する</button></div><div class="quick"><div>↻</div><div><b>間違えた問題を復習</b><small>苦手をそのままにしない</small></div><button class="btn secondary" onclick="startReview()">復習する</button></div></div><div class="card"><h3>学習のヒント</h3><p class="muted">正解できなかった問題は、解説を読んでからもう一度挑戦。少しずつ理解を積み重ねよう。</p></div></div>
+<section class="card" aria-labelledby="study-fields-title" style="margin-top:18px">
+  <div class="eyebrow">EXPLORE YOUR SUBJECTS</div>
+  <h2 id="study-fields-title">STUVOYで学べる教科・学習分野</h2>
+  <p class="muted">STUVOYは、高校生の自学自習をサポートする無料の総合学習プラットフォームです。教科や単元、難易度を選び、自分のペースで問題演習に取り組めます。</p>
+  <div class="seo-subjects" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:14px">
+    <div><h3>国語</h3><p class="muted">現代文・古典・漢文など、文章読解や知識の確認。</p></div>
+    <div><h3>地理歴史・公民</h3><p class="muted">地理、日本史、世界史、公共などの基礎知識と理解。</p></div>
+    <div><h3>数学</h3><p class="muted">数学I・A・II・B・C・IIIの計算、関数、図形、確率など。</p></div>
+    <div><h3>英語</h3><p class="muted">英文法、語法、語彙、読解、長文読解など。</p></div>
+    <div><h3>理科</h3><p class="muted">物理・化学・生物・地学の重要事項や考え方。</p></div>
+    <div><h3>情報</h3><p class="muted">情報Iを中心に、データや情報活用に関する学習。</p></div>
+  </div>
+  <h3 style="margin-top:18px">基礎から入試・模試対策まで</h3>
+  <p class="muted">基礎・標準・発展の難易度を選べる問題演習に加え、入試・模試を意識した問題や模擬テストにも取り組めます。学習時間の記録、解答履歴、教科別の成績分析を使って、日々の学習を振り返れます。</p>
+  <h3 style="margin-top:18px">無料で、登録・ログインなしですぐに学習</h3>
+  <p class="muted">STUVOYは無料で利用できます。ゲストモードで問題演習や学習機能を始められます。学習履歴は利用中の端末・ブラウザに保存されます。</p>
+</section></section>
 <section class="view" id="practice"><div class="eyebrow">PRACTICE</div><h1>問題演習</h1><p class="muted">教科・難易度を選んで問題に挑戦しよう。</p><div class="filters"><select id="subjectfilter"><option value="all">すべての教科</option></select><select id="difficulty" aria-label="難易度"><option value="all">すべての難易度</option><option>基礎</option><option>標準</option><option>発展</option><option>入試・模試レベル</option></select><input id="search" placeholder="単元・キーワードで検索"></div><p class="muted" id="count"></p><div id="questionlist"></div><div class="card question" id="questionarea"><div class="empty muted">問題を選択すると、ここに表示されます。</div></div></section>
 <section class="view" id="admissions"><div class="eyebrow">ENTRANCE EXAM & MOCK TEST</div><h1>入試・模試対策</h1><p class="muted">共通テスト・模試を意識した長文読解、複数資料の読み取り、思考力問題に挑戦しよう。</p><div class="card" style="margin:16px 0"><div class="filters"><select id="admissionSubject"><option value="all">すべての分野</option><option>英語</option><option>国語</option><option>情報</option></select><select id="admissionDifficulty" aria-label="難易度"><option value="all">すべての難易度</option><option>入試・模試レベル</option></select><input id="admissionSearch" placeholder="テーマ・キーワードで検索"></div><p class="muted" id="admissionCount"></p><div id="admissionList"></div></div><div class="card question" id="admissionQuestionArea"><div class="empty muted">問題を選択すると、長文と設問がここに表示されます。</div></div></section>
 <section class="view" id="exam"><div class="eyebrow">MOCK EXAM</div><h1>模擬テスト</h1><div class="card" id="examsetup"><h3>10分間・10問チャレンジ</h3><p class="muted">全教科からランダムに10問出題。終了後に採点と解説を確認できます。</p><button class="btn" onclick="beginExam()">テストを開始</button></div><div class="card" id="examwork" style="display:none"><div style="display:flex;justify-content:space-between"><b id="examprogress">第1問 / 10問</b><b id="timer">10:00</b></div><div class="bar" style="margin:12px 0"><i id="exambar"></i></div><p class="muted" id="exammeta"></p><h2 id="examq"></h2><div class="choices" id="examchoices"></div><div class="actions"><button class="btn secondary" id="prev" onclick="moveExam(-1)">前へ</button><button class="btn" id="next" onclick="moveExam(1)">次へ</button><button class="btn secondary" onclick="finishExam()">提出する</button></div></div><div class="card" id="examresult" style="display:none"></div></section>
