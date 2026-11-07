@@ -1,0 +1,31 @@
+{
+  "id": "./",
+  "name": "STUVOY — 世界中の人が集まる学習の基地",
+  "short_name": "STUVOY",
+  "description": "無料で使える総合学習プラットフォーム。問題演習、入試・模試対策、学習記録をひとつに。",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#071426",
+  "theme_color": "#071426",
+  "categories": [
+    "education",
+    "productivity"
+  ],
+  "icons": [
+    {
+      "src": "./app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "./logo-symbol.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "monochrome"
+    }
+  ]
+}
